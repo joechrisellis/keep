@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Begin templated content -->
+
+{% if links %}
+<ol start="{{ links_per_page * (page - 1)  + 1 }}">
+  {% for link in links %}
+  <li class="link">
+    {% set parsed_url = link.parse_url() %}
+    <a href="{{ link.url }}">{{ link.title }}</a>
+
+    {% if parsed_url.netloc %}
+    <small>
+      (<a href="{{ parsed_url.scheme }}://{{ parsed_url.netloc }}">{{ parsed_url.netloc }}</a>)
+    </small>
+    {% endif  %}
+    <br>
+
+    <small>Posted: {{ link.created_on }}</small>
+  </li>
+  {% endfor %}
+</ol>
+{% else %}
+Nothing here yet!
+{% endif %}
+
+{% if prev_url %}
+<a href="{{ prev_url }}">< Newer links</a>
+{% endif %}
+
+{% if next_url %}
+<a href="{{ next_url }}">Older links ></a>
+{% endif %}
+
+<!-- End templated content -->
+
+{% endblock %}

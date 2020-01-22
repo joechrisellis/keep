@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    {% if title %}
+    <title>{{ title }} - {{ sitename }}</title>
+    {% else %}
+    <title>{{ sitename }}</title>
+    {% endif %}
+
+    <meta name="description" content="Joe Ellis's bookmark keep">
+    <meta name="author" content="Joe Ellis">
+    <link rel="icon" href="{{ url_for("static", filename="img/profile.JPEG") }}">
+
+    <!-- Custom styles -->
+    <link href="{{ url_for("static", filename="styles/main.css") }}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Main page content. -->
+    <main role="main" id="maincontent">
+
+      <center>
+        <table id="keep-main" border="0" cellpadding="5" cellspacing="0" width="85%" bgcolor="#f6f6ef">
+          <tbody>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <tr>
+              <td>
+                <b>{{ message }}</b>
+              </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <tr>
+              <td>
+                <table>
+                  <h3>{{ sitename }}</h3>
+                  <p>
+                  Hi! I'm <a href="https://joechrisellis.com">Joe Ellis</a>, a software
+                  engineer living in Manchester.
+                  </p>
+                  <p>
+                  This is where I post useful links and things I find interesting. The
+                  theory is that somebody else might find them useful/interesting too. :)
+                  </p>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <hr>
+                <table>
+                  {% block content %}{% endblock %}
+                </table>
+                <hr>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table>
+                  <footer>
+                    <small>
+                      E: <a href="mailto:{{ general_contact_email }}">{{ general_contact_email }}</a>
+                    </small>
+
+                    <br>
+
+                    <small>
+                      <a href="{{ url_for("root.index") }}">Index</a>
+                    </small>
+                    &emsp;
+                    <small>
+                      <a href="{{ url_for("root.about") }}">About</a>
+                    </small>
+                    &emsp;
+                    <small>
+                      <a href="{{ url_for("root.why_is_the_page_so_basic") }}">Why is the page so basic?</a>
+                    </small>
+                    &emsp;
+                    <small>
+                      <a href="https://github.com/joechrisellis">Source Code</a>
+                    </small>
+                  </footer>
+                </table>
+              </td>
+            </tr>
+            <tbody>
+        </table>
+      </center>
+
+    </main>
+  </body>
+</html>

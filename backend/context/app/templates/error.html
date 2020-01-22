@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center vertical-center">
+  <div class="text-center">
+    <h2 class="display-4">{{ error_msg[0] }}</h2>
+    <p class="text-muted">{{ error_msg[1] }}</p>
+    <a class="btn btn-outline-dark" href="{{ url_for("root.index") }}">Go Home</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Begin templated content -->
+
+<small>(self-post)</small>
+
+{% filter markdown %}
+{{ post_md }}
+{% endfilter %}
+
+<!-- End templated content -->
+
+{% endblock %}
