@@ -8,8 +8,4 @@ RUN apk add --no-cache \
 COPY ./context .
 RUN rm -rf public/*
 RUN pip3 install --no-cache-dir -r requirements.txt
-CMD [ "uwsgi", "--socket", "0.0.0.0:3031", \
-               "--uid", "uwsgi", \
-               "--plugins", "python3", \
-               "--protocol", "uwsgi", \
-               "--wsgi", "wsgi:app" ]
+CMD ["./start.sh"]
