@@ -75,3 +75,9 @@ def why_is_the_page_so_basic():
     return render_template(
         "why-is-the-page-so-basic.html", title="Why is the page so basic?"
     )
+
+@mod_root.route("/export-links")
+def export_links():
+    return render_template(
+        "export-links.html", title="Export Links"
+    )

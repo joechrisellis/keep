@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Click the links below to make a grab a local copy of the links on this page.</p>
+
+<ul>
+  <li>
+    <a href="{{ url_for("api.export_json") }}">JSON format</a>.
+  </li>
+  <li>
+    <a href="{{ url_for("api.export_text") }}">Plaintext format</a>.
+  </li>
+</ul>
+
+{% endblock %}
