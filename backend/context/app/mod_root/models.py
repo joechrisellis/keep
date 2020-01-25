@@ -16,3 +16,16 @@ class Link(Base):
             return urlparse(self.url)
         except:
             return None
+
+    def to_dictionary(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "url": self.url,
+            "created_on": self.created_on,
+        }
+
+    def __str__(self):
+        return "{} ({}) - submitted {}".format(
+            self.title, self.url, self.created_on
+        )

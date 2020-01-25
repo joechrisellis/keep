@@ -13,9 +13,11 @@ Markdown(app)
 # Import blueprints
 from app.mod_root.controllers import mod_root as root_module
 from app.mod_self.controllers import mod_self as self_module
+from app.mod_api.controllers import mod_api as api_module
 
 # Register blueprints
 app.register_blueprint(root_module)
 app.register_blueprint(self_module)
+app.register_blueprint(api_module)
 
 from app import errors
