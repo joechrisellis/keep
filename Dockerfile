@@ -1,6 +1,7 @@
 FROM alpine:3.7
 EXPOSE 3031
 VOLUME /public
+VOLUME /private
 WORKDIR /usr/src/app
 RUN apk add --no-cache \
         uwsgi-python3 \
