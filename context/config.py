@@ -5,8 +5,10 @@ class Config:
     """Base configuration."""
 
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-    PUBLIC_DIR = os.path.join("/", "usr", "src", "app", "public")
-    POSTS_DIR = os.path.join(PUBLIC_DIR, "selfposts")
+    PUBLIC_DIR = os.path.join("/", "public")
+    PRIVATE_DIR = os.path.join("/", "private")
+
+    POSTS_DIR = os.path.join(PRIVATE_DIR, "selfposts")
 
     DEBUG = False
     TESTING = False
@@ -24,7 +26,7 @@ class ProductionConfig(Config):
     """Production configuration."""
 
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(
-        Config.PUBLIC_DIR, "app.db"
+        Config.PRIVATE_DIR, "app.db"
     )
 
     # Application threads. A common general assumption is using 2 per available
@@ -39,7 +41,8 @@ class DebugConfig(Config):
     DEBUG = True
 
     PUBLIC_DIR = os.path.join(Config.BASE_DIR, "public")
-    POSTS_DIR = os.path.join(PUBLIC_DIR, "selfposts")
+    PRIVATE_DIR = os.path.join(Config.BASE_DIR, "private")
+    POSTS_DIR = os.path.join(PRIVATE_DIR, "selfposts")
 
     # Database related.
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(PUBLIC_DIR, "app.db")
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(PRIVATE_DIR, "app.db")
