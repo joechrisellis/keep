@@ -2,3 +2,10 @@
 .link {
   padding-bottom: 0.66em;
 }
+
+.tag {
+  background-color: #fff8c6;
+  border-radius: 5px;
+  border: 1px solid;
+  padding: 0.05em;
+}

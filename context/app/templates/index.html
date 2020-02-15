@@ -18,6 +18,15 @@
     {% endif  %}
     <br>
 
+    {% if link.get_tags() %}
+    <small>
+      Tags:
+      {% for tag in link.get_tags() %}
+      <span class="tag">{{ tag }}</span> 
+      {% endfor %}
+    </small>
+    <br>
+    {% endif %}
     <small>Posted: {{ link.created_on }}</small>
   </li>
   {% endfor %}
