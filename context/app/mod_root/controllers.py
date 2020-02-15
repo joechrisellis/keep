@@ -22,9 +22,17 @@ def index():
     """Main index page showing companies/jobs."""
 
     page = request.args.get("page", 1, type=int)
-    links = Link.query.order_by(Link.created_on.desc()).paginate(
-        page, current_app.config["LINKS_PER_PAGE"], False
-    )
+    tag_filter = request.args.get("tag", None)
+
+    if tag_filter:
+        links = Link.query.order_by(Link.created_on.desc()).paginate(
+            page, current_app.config["LINKS_PER_PAGE"], False
+        )
+    else:
+        links = Link.query.order_by(Link.created_on.desc()).paginate(
+            page, current_app.config["LINKS_PER_PAGE"], False
+        )
+
     next_url = (
         url_for("root.index", page=links.next_num) if links.has_next else None
     )

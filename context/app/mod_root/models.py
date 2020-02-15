@@ -1,6 +1,7 @@
-from urllib.parse import urlparse
 from app import db
 from app.database import Base
+from sqlalchemy.ext.hybrid import hybrid_property
+from urllib.parse import urlparse
 
 
 class Link(Base):
@@ -18,9 +19,16 @@ class Link(Base):
         except:
             return None
 
-    def get_tags(self):
+    @hybrid_property
+    def link_tags(self):
         return (
             [tag.strip() for tag in self.tags.split(",")] if self.tags else []
+        )
+
+    @link_tags.expression
+    def link_tags(cls):
+        return (
+            [tag.strip() for tag in cls.tags.split(",")] if cls.tags else []
         )
 
     def to_dictionary(self):

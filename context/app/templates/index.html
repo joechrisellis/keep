@@ -18,10 +18,10 @@
     {% endif  %}
     <br>
 
-    {% if link.get_tags() %}
+    {% if link.link_tags %}
     <small>
       Tags:
-      {% for tag in link.get_tags() %}
+      {% for tag in link.link_tags %}
       <span class="tag">{{ tag }}</span> 
       {% endfor %}
     </small>
