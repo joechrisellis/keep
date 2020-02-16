@@ -12,6 +12,9 @@ class SubmitForm(FlaskForm):
     url = StringField(
         "URL", validators=[DataRequired(message="Please enter a URL.")]
     )
+
+    tags = StringField("Tags")
+
     pin = PasswordField(
         "PIN", validators=[DataRequired(message="Please enter the PIN.")]
     )

@@ -22,16 +22,10 @@ def index():
     """Main index page showing companies/jobs."""
 
     page = request.args.get("page", 1, type=int)
-    tag_filter = request.args.get("tag", None)
 
-    if tag_filter:
-        links = Link.query.order_by(Link.created_on.desc()).paginate(
-            page, current_app.config["LINKS_PER_PAGE"], False
-        )
-    else:
-        links = Link.query.order_by(Link.created_on.desc()).paginate(
-            page, current_app.config["LINKS_PER_PAGE"], False
-        )
+    links = Link.query.order_by(Link.created_on.desc()).paginate(
+        page, current_app.config["LINKS_PER_PAGE"], False
+    )
 
     next_url = (
         url_for("root.index", page=links.next_num) if links.has_next else None
@@ -63,7 +57,12 @@ def submit():
             flash("Invalid PIN.")
             return redirect(url_for("root.submit"))
 
-        new_link = Link(title=form.title.data, url=form.url.data)
+        tags_clean = ",".join(
+            [tag.strip() for tag in form.tags.data.split(",") if tag]
+        )
+        new_link = Link(
+            title=form.title.data, url=form.url.data, tags=tags_clean,
+        )
         db.session.add(new_link)
         db.session.commit()
 
@@ -84,8 +83,7 @@ def why_is_the_page_so_basic():
         "why-is-the-page-so-basic.html", title="Why is the page so basic?"
     )
 
+
 @mod_root.route("/export-links")
 def export_links():
-    return render_template(
-        "export-links.html", title="Export Links"
-    )
+    return render_template("export-links.html", title="Export Links")
