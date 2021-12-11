@@ -4,7 +4,9 @@ VOLUME /public
 VOLUME /private
 WORKDIR /usr/src/app
 RUN apk add --no-cache \
+        build-base \
         uwsgi-python3 \
+        python3-dev \
         python3
 COPY ./context .
 RUN rm -rf public/*
